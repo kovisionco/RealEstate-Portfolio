@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kovision — Photographie &amp; Vidéo Immobilière Premium</title>
+<meta name="description" content="Kovision — Studio spécialisé en photographie et vidéographie immobilière. Maroc et Dubai. Visites vidéo cinématiques, Reels Instagram, reportages photo premium.">
+
+<!-- DNS prefetch for faster external resource loading -->
+<link rel="dns-prefetch" href="https://drive.google.com">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Optimized: fewer font variants = faster load -->
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;1,6..96,300&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+<style>
+/* ─── TOKENS ──────────────────────────────────────── */
+:root {
+  --black:   #0A0A0A;
+  --white:   #FFFFFF;
+  --gray-1:  #F5F5F5;
+  --gray-2:  #E8E8E8;
+  --gray-3:  #AAAAAA;
+  --serif:   'Bodoni Moda', Georgia, serif;
+  --hero-serif: 'Bodoni Moda', Georgia, serif;
+  --sans:    'DM Sans', system-ui, sans-serif;
+}
+
+/* ─── RESET ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  color: var(--black);
+  background: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; }
+button { cursor: pointer; }
+
+/* ─── SCROLLBAR ───────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--white); }
+::-webkit-scrollbar-thumb { background: var(--black); }
+
+/* ─── LAYOUT ──────────────────────────────────────── */
+.container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+section { padding: 96px 0; }
+
+/* ─── TYPE HELPERS ────────────────────────────────── */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.22em;
+  text-transform: uppercase; color: rgba(0,0,0,0.45);
+}
+.eyebrow::before {
+  content: ''; width: 28px; height: 1px; background: rgba(0,0,0,0.2); flex-shrink: 0;
+}
+#portfolio .eyebrow,
+#cta .eyebrow {
+  color: rgba(255,255,255,0.4);
+}
+#portfolio .eyebrow::before,
+#cta .eyebrow::before {
+  background: rgba(255,255,255,0.2);
+}
+.h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 6.5vw, 5.2rem);
+  font-weight: 400; line-height: 1.06; letter-spacing: -0.01em;
+}
+.h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400; line-height: 1.18;
+}
+.h3 {
+  font-family: var(--serif);
+  font-size: 1.35rem; font-weight: 400; line-height: 1.3;
+}
+.body-text {
+  font-size: 0.93rem; line-height: 1.85; color: var(--gray-3);
+}
+
+/* ─── BUTTONS ─────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; padding: 15px 34px; border: none;
+  transition: all 0.28s ease;
+}
+.btn-gold { background: var(--black); color: var(--white); }
+.btn-gold:hover { background: #222; transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.25); }
+.btn-outline { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.3); }
+.btn-outline:hover { border-color: var(--white); color: var(--white); background: rgba(255,255,255,0.08); }
+.btn-border  { background: transparent; color: var(--black); border: 1px solid var(--black); }
+.btn-border:hover { background: var(--black); color: var(--white); }
+.btn .arr { transition: transform 0.25s; }
+.btn:hover .arr { transform: translateX(4px); }
+
+/* ─── REVEAL ──────────────────────────────────────── */
+.reveal        { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-l      { opacity: 0; transform: translateX(-32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-r      { opacity: 0; transform: translateX(32px);  transition: opacity 0.7s ease, transform 0.7s ease; }
+.d1 { transition-delay: 0.12s; }
+.d2 { transition-delay: 0.24s; }
+.d3 { transition-delay: 0.36s; }
+.visible { opacity: 1 !important; transform: none !important; }
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-l, .reveal-r { opacity: 1; transform: none; transition: none; }
+  .hero-img { transition: none; }
+  .scroll-tick { animation: none; }
+}
+
+/* ════════════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════════ */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  padding: 14px 0; transition: all 0.35s ease;
+  /* Subtle permanent tint ensures logo contrast on any hero image */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 100%);
+}
+#nav.scrolled {
+  background: rgba(10,10,10,0.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+
+/* ── Logo ── */
+.logo-mark {
+  font-family: var(--serif); font-size: 1.4rem; font-weight: 400;
+  color: var(--white); letter-spacing: 0.12em; text-transform: uppercase;
+}
+#logoLink {
+  display: flex; align-items: center;
+}
+
+.nav-links { display: flex; align-items: center; gap: 34px; list-style: none; }
+.nav-links a {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.13em;
+  text-transform: uppercase; color: rgba(255,255,255,0.6);
+  transition: color 0.25s;
+}
+.nav-links a:hover { color: var(--white); }
+
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 24px; height: 1px; background: var(--white);
+  transition: all 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+.mobile-menu {
+  display: none; position: fixed; inset: 0;
+  background: var(--black); z-index: 899;
+  flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: var(--serif); font-size: 2.2rem; color: var(--white);
+  transition: color 0.25s;
+}
+.mobile-menu a:hover { color: rgba(255,255,255,0.6); }
+
+/* ════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════ */
+#hero {
+  position: relative; height: 100vh; min-height: 680px;
+  display: flex; align-items: center;
+  background: var(--black);
+}
+.hero-img {
+  position: absolute; inset: 0;
+  /* Desktop: full resolution */
+  background: url('https://drive.google.com/thumbnail?id=1WSU4nORVlmx1sTT5gmxLZb5CEKTeyJGV&sz=w1600') center/cover;
+  transform: scale(1.04); transition: transform 7s ease;
+}
+.hero-img.loaded { transform: scale(1); }
+.hero-veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(10,10,10,0.80) 0%, rgba(10,10,10,0.28) 100%);
+}
+.hero-body { position: relative; z-index: 2; max-width: 780px; }
+.hero-eye {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.26em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5);
+  display: flex; align-items: center; gap: 14px; margin-bottom: 30px;
+  opacity: 0; animation: fadeUp 0.9s ease 0.3s forwards;
+}
+.hero-eye::before { content: ''; width: 36px; height: 1px; background: rgba(255,255,255,0.3); }
+.hero-title {
+  font-family: var(--hero-serif);
+  font-size: clamp(1.9rem, 5.5vw, 6.2rem);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.9s ease 0.5s forwards;
+}
+.hero-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--white);
+}
+.hero-sub {
+  font-size: 0.95rem; color: rgba(255,255,255,0.50); max-width: 460px;
+  line-height: 1.8; margin-bottom: 48px;
+  opacity: 0; animation: fadeUp 0.9s ease 0.7s forwards;
+}
+.hero-btns {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.9s ease 0.9s forwards;
+}
+.hero-scroll {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  color: rgba(255,255,255,0.25); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; z-index: 2;
+  animation: fadeIn 1s ease 1.4s both;
+}
+.scroll-tick {
+  width: 1px; height: 44px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ════════════════════════════════════════════════════
+   STATS
+═══════════════════════════════════════════════════ */
+#stats { background: var(--black); padding: 0; }
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.stat {
+  padding: 48px 32px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.stat:last-child { border-right: none; }
+.stat-n {
+  font-family: var(--serif); font-size: 2.6rem; font-weight: 400;
+  color: var(--white); display: flex; align-items: baseline; gap: 2px; line-height: 1;
+}
+.stat-s { font-size: 1.5rem; }
+.stat-l {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 10px;
+}
+
+/* ════════════════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════════════ */
+#about { background: var(--white); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 88px; align-items: center; }
+.about-img-wrap { position: relative; }
+.about-img-wrap::after {
+  content: ''; position: absolute; top: 18px; left: 18px; right: -18px; bottom: -18px;
+  border: 1px solid rgba(0,0,0,0.12); z-index: 0; pointer-events: none;
+}
+.about-img {
+  position: relative; z-index: 1;
+  width: 100%; aspect-ratio: 4/5; object-fit: cover;
+}
+.about-text .eyebrow { margin-bottom: 20px; }
+.about-text .h2 { margin-bottom: 26px; }
+.about-text p { margin-bottom: 18px; }
+.about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.tag {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 7px 16px;
+  border: 1px solid var(--gray-2); color: var(--gray-3);
+  transition: all 0.25s;
+}
+.tag:hover { border-color: var(--black); color: var(--black); }
+
+/* ════════════════════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════════════════ */
+#services { background: var(--gray-1); }
+.services-head { text-align: center; max-width: 560px; margin: 0 auto 64px; }
+.services-head .eyebrow { justify-content: center; margin-bottom: 18px; }
+.services-head p { margin-top: 14px; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--gray-2); }
+.svc {
+  background: var(--white); padding: 52px 40px;
+  position: relative; overflow: hidden; transition: transform 0.3s;
+}
+.svc:hover { transform: translateY(-4px); }
+.svc::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: var(--black); transform: scaleX(0);
+  transition: transform 0.35s ease; transform-origin: left;
+}
+.svc:hover::after { transform: scaleX(1); }
+.svc-num {
+  font-family: var(--serif); font-size: 3.5rem; font-weight: 400;
+  color: var(--gray-2); line-height: 1; margin-bottom: 32px;
+  transition: color 0.3s;
+}
+.svc:hover .svc-num { color: rgba(0,0,0,0.06); }
+.svc-icon {
+  width: 46px; height: 46px; margin-bottom: 22px;
+  border: 1px solid rgba(0,0,0,0.15); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--black);
+}
+.svc-icon svg { width: 20px; height: 20px; }
+.svc .h3 { margin-bottom: 14px; }
+.svc p { font-size: 0.9rem; color: var(--gray-3); line-height: 1.78; }
+
+/* ════════════════════════════════════════════════════
+   PORTFOLIO
+═══════════════════════════════════════════════════ */
+#portfolio { background: var(--black); }
+.port-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 48px; flex-wrap: wrap; gap: 24px;
+}
+.port-head .h2 { color: var(--white); }
+.port-toggle {
+  display: flex; gap: 2px;
+  border: 1px solid rgba(255,255,255,0.12); padding: 4px;
+}
+.toggle-btn {
+  display: flex; align-items: center; gap: 9px;
+  padding: 10px 20px; background: transparent; border: none;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.35);
+  transition: all 0.25s; white-space: nowrap;
+}
+.toggle-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+.toggle-btn.active { background: var(--white); color: var(--black); }
+.toggle-btn:hover:not(.active) { color: rgba(255,255,255,0.7); }
+
+.port-grid {
+  columns: 3; column-gap: 10px;
+  transition: opacity 0.35s;
+}
+.port-item {
+  break-inside: avoid; margin-bottom: 10px;
+  position: relative; overflow: hidden; cursor: pointer;
+}
+.port-item img { width: 100%; transition: transform 0.55s ease; display: block; }
+.port-item:hover img { transform: scale(1.05); }
+.port-item.hidden { display: none; }
+.port-overlay { display: none; }
+
+/* play badge for video items */
+.play-badge {
+  position: absolute; top: 16px; right: 16px;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center;
+  z-index: 2;
+}
+.play-badge svg { width: 13px; height: 13px; fill: var(--black); margin-left: 2px; }
+
+/* ════════════════════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════════════════ */
+.lightbox {
+  display: none; position: fixed; inset: 0; z-index: 1100;
+  background: rgba(0,0,0,0.96);
+  align-items: center; justify-content: center;
+}
+.lightbox.open { display: flex; }
+.lightbox-close {
+  position: absolute; top: 20px; right: 28px;
+  background: none; border: none; color: var(--white);
+  font-size: 2.2rem; line-height: 1; cursor: pointer;
+  opacity: 0.7; transition: opacity 0.2s;
+  /* Large tap target on mobile */
+  padding: 12px; min-width: 48px; min-height: 48px;
+  display: flex; align-items: center; justify-content: center;
+}
+.lightbox-close:hover { opacity: 1; }
+.lightbox-img {
+  max-width: 92vw; max-height: 92vh;
+  object-fit: contain; display: block;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+.lightbox-prev,
+.lightbox-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: none; border: 1px solid rgba(255,255,255,0.2); color: var(--white);
+  font-size: 1.4rem; width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.2s; opacity: 0.6;
+}
+.lightbox-prev:hover, .lightbox-next:hover { opacity: 1; background: rgba(255,255,255,0.08); }
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+.lightbox-counter {
+  position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%);
+  color: rgba(255,255,255,0.35); font-size: 11px; letter-spacing: 0.16em;
+}
+
+/* ════════════════════════════════════════════════════
+   PROCESS
+═══════════════════════════════════════════════════ */
+#process { background: var(--white); }
+.process-head { text-align: center; max-width: 520px; margin: 0 auto 64px; }
+.process-head .eyebrow { justify-content: center; margin-bottom: 18px; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.step { padding: 0 28px; text-align: center; position: relative; }
+.step::after {
+  content: ''; position: absolute; top: 36px; left: 50%; right: -50%;
+  height: 1px; background: var(--gray-2);
+}
+.step:last-child::after { display: none; }
+.step-n {
+  width: 72px; height: 72px; border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.15);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 26px;
+  font-family: var(--serif); font-size: 1.3rem; color: var(--black);
+  background: var(--white); position: relative; z-index: 1;
+}
+.step .h3 { font-size: 1.05rem; margin-bottom: 10px; }
+.step p { font-size: 0.87rem; color: var(--gray-3); line-height: 1.75; }
+
+/* ════════════════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════════════ */
+#testimonials { background: var(--gray-1); }
+.testi-head { text-align: center; max-width: 500px; margin: 0 auto 60px; }
+.testi-head .eyebrow { justify-content: center; margin-bottom: 18px; }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.testi {
+  background: var(--white); padding: 40px 32px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.testi:hover { border-color: var(--black); box-shadow: 0 12px 40px rgba(0,0,0,0.06); }
+.testi-mark {
+  font-family: var(--serif); font-size: 3rem; line-height: 0.6;
+  color: var(--gray-2); margin-bottom: 22px; display: block;
+}
+.testi-stars { color: var(--black); letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 16px; }
+.testi-text { font-size: 0.9rem; color: var(--gray-3); line-height: 1.82; font-style: italic; margin-bottom: 28px; }
+.testi-who { display: flex; align-items: center; gap: 13px; }
+.testi-av {
+  width: 44px; height: 44px; border-radius: 50%;
+  object-fit: cover; border: 1px solid var(--gray-2);
+}
+.testi-name { font-weight: 600; font-size: 0.88rem; }
+.testi-role { font-size: 0.78rem; color: var(--gray-3); }
+
+/* ════════════════════════════════════════════════════
+   CTA
+═══════════════════════════════════════════════════ */
+#cta {
+  background: var(--black); position: relative; overflow: hidden;
+  text-align: center; padding: 110px 0;
+}
+#cta::before {
+  content: ''; position: absolute; inset: 0;
+  background: url('https://drive.google.com/thumbnail?id=1WSU4nORVlmx1sTT5gmxLZb5CEKTeyJGV&sz=w1200') center/cover;
+  opacity: 0.06;
+}
+#cta > .container { position: relative; z-index: 1; }
+#cta .h2 { color: var(--white); margin: 16px auto 18px; max-width: 620px; }
+#cta p { color: rgba(255,255,255,0.45); max-width: 440px; margin: 0 auto 42px; font-size: 0.93rem; }
+.cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* ════════════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════════ */
+#contact { background: var(--white); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.contact-info .eyebrow { margin-bottom: 20px; }
+.contact-info .h2 { margin-bottom: 20px; }
+.contact-info > p { margin-bottom: 36px; }
+.cinfo-list { display: flex; flex-direction: column; gap: 22px; }
+.cinfo {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding-bottom: 22px; border-bottom: 1px solid var(--gray-2);
+}
+.cinfo:last-child { border-bottom: none; }
+.cinfo-icon {
+  width: 40px; height: 40px; flex-shrink: 0;
+  border: 1px solid var(--gray-2); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--black);
+}
+.cinfo-icon svg { width: 16px; height: 16px; }
+.cinfo-lbl { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-3); margin-bottom: 4px; }
+.cinfo-val { font-size: 0.9rem; font-weight: 500; }
+.wa-link {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 28px;
+  background: #25D366; color: var(--white);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 14px 26px; transition: all 0.25s;
+}
+.wa-link:hover { background: #20c05c; transform: translateY(-2px); }
+.wa-link svg { width: 17px; height: 17px; }
+
+/* Form */
+.form-group { margin-bottom: 18px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group label {
+  display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gray-3); margin-bottom: 8px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%; padding: 13px 16px;
+  border: 1px solid var(--gray-2); background: var(--white);
+  font-family: var(--sans); font-size: 0.9rem; color: var(--black);
+  outline: none; transition: border-color 0.25s; border-radius: 0;
+  -webkit-appearance: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--black); }
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-submit { width: 100%; justify-content: center; margin-top: 4px; }
+#formOk { display: none; text-align: center; padding: 44px 20px; }
+#formOk .ok-icon {
+  width: 56px; height: 56px; border: 1px solid var(--black); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px; color: var(--black);
+}
+#formOk .ok-icon svg { width: 22px; height: 22px; }
+#formOk h4 { font-family: var(--serif); font-size: 1.5rem; margin-bottom: 8px; }
+#formOk p { color: var(--gray-3); font-size: 0.9rem; }
+
+/* ════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════ */
+footer {
+  background: var(--black);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 56px 0 28px;
+}
+.footer-top {
+  display: grid; grid-template-columns: 1.8fr 1fr; gap: 60px;
+  margin-bottom: 44px;
+  padding-bottom: 44px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.footer-logo-mark {
+  display: block;
+  font-family: var(--serif); font-size: 1.3rem; font-weight: 400;
+  color: rgba(255,255,255,0.85); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 18px;
+}
+.footer-tagline { font-size: 0.86rem; color: rgba(255,255,255,0.3); line-height: 1.75; max-width: 300px; }
+.footer-social-col h5 {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 22px;
+}
+.footer-social-links { display: flex; flex-direction: column; gap: 14px; }
+.footer-social-link {
+  display: flex; align-items: center; gap: 14px;
+  color: rgba(255,255,255,0.45); font-size: 0.87rem;
+  transition: color 0.25s; text-decoration: none;
+}
+.footer-social-link:hover { color: var(--white); }
+.footer-social-link svg { width: 17px; height: 17px; flex-shrink: 0; }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.footer-bottom p { font-size: 0.76rem; color: rgba(255,255,255,0.2); }
+
+/* ─── FLOAT WA ────────────────────────────────────── */
+.float-wa {
+  position: fixed; bottom: 26px; right: 26px; z-index: 800;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: #25D366; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 24px rgba(37,211,102,0.35); transition: transform 0.25s, box-shadow 0.25s;
+  /* Minimum tap target size */
+  min-width: 48px; min-height: 48px;
+}
+.float-wa:hover { transform: scale(1.08); box-shadow: 0 10px 36px rgba(37,211,102,0.45); }
+.float-wa svg { width: 24px; height: 24px; fill: var(--white); }
+
+/* ─── VIDEO MODAL ─────────────────────────────────── */
+.modal {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+}
+.modal.open { display: flex; }
+.modal-close {
+  position: absolute; top: 18px; right: 22px;
+  background: none; border: none; color: var(--white); font-size: 2rem; line-height: 1;
+  padding: 12px; min-width: 48px; min-height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 2;
+}
+/* Landscape (default) */
+.modal-box {
+  position: relative;
+  width: min(90vw, 940px);
+  aspect-ratio: 16/9;
+}
+/* Vertical / portrait videos (Reels, 9:16) */
+.modal-box.vertical {
+  width: min(46vh, 390px);
+  height: auto;
+  aspect-ratio: 9/16;
+  max-height: 84vh;
+}
+.modal-box iframe {
+  width: 100%; height: 100%; border: none; display: block;
+}
+
+/* ─── PERFORMANCE: off-screen sections ────────────── */
+/* content-visibility defers layout/paint for sections not yet scrolled to */
+#about, #services, #process, #testimonials, #cta, #contact, footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* ─── KEYFRAMES ───────────────────────────────────── */
+@keyframes fadeUp  { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+@keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+@keyframes pulse   { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+/* ─── MOBILE PERFORMANCE ──────────────────────────── */
+@media (max-width: 768px) and (pointer: coarse) {
+  /* Disable hover transitions that waste GPU on touch devices */
+  .svc:hover      { transform: none; }
+  .svc:hover::after { transform: none; }
+  .btn-gold:hover { transform: none; box-shadow: none; }
+  .testi:hover    { box-shadow: none; }
+  /* Disable scroll-triggered animations on low-power mobile */
+  .reveal, .reveal-l, .reveal-r {
+    opacity: 1; transform: none; transition: none;
+  }
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────── */
+@media (max-width: 1024px) {
+  .stats-row   { grid-template-columns: repeat(2, 1fr); }
+  .about-grid  { grid-template-columns: 1fr; gap: 52px; }
+  .about-img-wrap { max-width: 480px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .port-grid   { columns: 2; }
+  .steps       { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+  .step::after { display: none; }
+  .testi-grid  { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 52px; }
+  .footer-top  { grid-template-columns: 1fr; gap: 36px; }
+}
+
+@media (max-width: 768px) {
+  section { padding: 56px 0; }
+  .nav-links, .nav-links + .btn { display: none; }
+  .hamburger  { display: flex; }
+  .logo-mark  { font-size: 1.15rem; }
+  #hero       { min-height: 480px; }
+  .hero-sub   { font-size: 0.88rem; margin-bottom: 32px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .port-grid   { columns: 1; }
+  .steps       { grid-template-columns: 1fr; }
+  .testi-grid  { grid-template-columns: 1fr; }
+  .hero-btns   { flex-direction: column; align-items: flex-start; }
+  .port-head   { flex-direction: column; align-items: flex-start; }
+  .form-row    { grid-template-columns: 1fr; }
+  .footer-top  { grid-template-columns: 1fr; }
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+  /* Smaller hero image on mobile for faster load */
+  .hero-img {
+    background-image: url('https://drive.google.com/thumbnail?id=1WSU4nORVlmx1sTT5gmxLZb5CEKTeyJGV&sz=w900');
+    /* Disable parallax scale on mobile — saves paint cost */
+    transform: none !important; transition: none !important;
+  }
+  /* Vertical modal fills screen height on mobile */
+  .modal-box.vertical {
+    height: min(78vh, 600px);
+  }
+}
+
+@media (max-width: 480px) {
+  section { padding: 48px 0; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .logo-mark { font-size: 1.05rem; }
+  .hero-title { font-size: clamp(1.7rem, 8vw, 2.4rem); line-height: 1.12; }
+  .hero-eye   { margin-bottom: 18px; }
+  #hero       { min-height: 440px; }
+  /* Even smaller hero image on very small screens */
+  .hero-img {
+    background-image: url('https://drive.google.com/thumbnail?id=1WSU4nORVlmx1sTT5gmxLZb5CEKTeyJGV&sz=w600');
+  }
+  .stat { padding: 28px 16px; }
+  .stat-n { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══════════════════════════════════ -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" id="logoLink">
+        <span class="logo-mark">Kovision</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">Studio</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Projets</a></li>
+        <li><a href="#testimonials">Avis</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="https://wa.me/212664015571" class="btn btn-gold" style="padding:11px 22px;font-size:10px;letter-spacing:0.14em;display:none;" id="navCta">Devis</a>
+      <button class="hamburger" id="hambBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobMenu">
+  <a href="#about"        class="mob-l">Studio</a>
+  <a href="#services"     class="mob-l">Services</a>
+  <a href="#portfolio"    class="mob-l">Projets</a>
+  <a href="#testimonials" class="mob-l">Avis</a>
+  <a href="#contact"      class="mob-l">Contact</a>
+  <a href="https://wa.me/212664015571" class="btn btn-gold" style="margin-top:18px;">Demander un devis</a>
+</div>
+
+<!-- ══ HERO ════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-img" id="heroBg"></div>
+  <div class="hero-veil"></div>
+  <div class="container">
+    <div class="hero-body">
+      <div class="hero-eye">Studio Immobilier Premium</div>
+      <h1 class="hero-title">
+        Révélez tout<br>le potentiel<br><em>de votre propriété.</em>
+      </h1>
+      <p class="hero-sub">
+        Photographie architecturale, visites vidéo cinématiques et contenu Reels
+        pour les professionnels de l'immobilier qui exigent l'excellence.
+      </p>
+      <div class="hero-btns">
+        <a href="#portfolio" class="btn btn-gold">Voir nos projets <span class="arr">&#8594;</span></a>
+        <a href="#contact"   class="btn btn-outline">Demander un devis</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-tick"></div>
+    <span>Découvrir</span>
+  </div>
+</section>
+
+<!-- ══ STATS ════════════════════════════════════════ -->
+<section id="stats">
+  <div class="container" style="padding:0 28px;">
+    <div class="stats-row">
+      <div class="stat reveal">
+        <div class="stat-n"><span class="cnt" data-to="250">0</span><span class="stat-s">+</span></div>
+        <div class="stat-l">Propriétés photographiées</div>
+      </div>
+      <div class="stat reveal d1">
+        <div class="stat-n"><span class="cnt" data-to="120">0</span><span class="stat-s">+</span></div>
+        <div class="stat-l">Visites vidéo réalisées</div>
+      </div>
+      <div class="stat reveal d2">
+        <div class="stat-n"><span class="cnt" data-to="80">0</span><span class="stat-s">+</span></div>
+        <div class="stat-l">Clients satisfaits</div>
+      </div>
+      <div class="stat reveal d3">
+        <div class="stat-n"><span class="cnt" data-to="4">0</span></div>
+        <div class="stat-l">Années d'expertise</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ════════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal-l">
+        <img class="about-img"
+          src="https://drive.google.com/thumbnail?id=1n2Gjb4q5rC7h0DWyi5ch6OrToVnfVpQZ&sz=w800"
+          alt="Kovision Studio" loading="lazy" decoding="async">
+      </div>
+      <div class="about-text reveal-r">
+        <div class="eyebrow">Notre histoire</div>
+        <h2 class="h2">L'art de valoriser<br>l'espace immobilier</h2>
+        <p class="body-text" style="margin-top:26px;">
+          Kovision est un studio de photographie et vidéographie spécialisé dans
+          l'immobilier de prestige. Notre mission : transformer chaque bien en une
+          histoire visuelle inoubliable qui séduit les acheteurs dès le premier regard.
+        </p>
+        <p class="body-text">
+          Fort d'une expérience terrain acquise au <strong style="color:var(--black);font-weight:600;">Maroc</strong> et aux
+          <strong style="color:var(--black);font-weight:600;">Emirats Arabes Unis (Dubai)</strong>,
+          nous comprenons les exigences des marchés immobiliers les plus compétitifs
+          et apportons un regard cinématique à chaque projet.
+        </p>
+        <p class="body-text">
+          Chaque reportage est traité avec rigueur, créativité et une attention portée
+          aux moindres détails — parce que la première impression ne se donne qu'une seule fois.
+        </p>
+        <div class="about-tags">
+          <span class="tag">Photographie HD</span>
+          <span class="tag">Vidéo Cinématique</span>
+          <span class="tag">Reels Instagram</span>
+          <span class="tag">Post-production</span>
+          <span class="tag">Livraison 48h</span>
+          <span class="tag">Maroc &amp; Dubai</span>
+        </div>
+        <a href="#contact" class="btn btn-border" style="margin-top:36px;">
+          Travailler ensemble <span class="arr">&#8594;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ═════════════════════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="services-head">
+      <div class="eyebrow">Ce que nous offrons</div>
+      <h2 class="h2 reveal">Des services visuels<br>à la hauteur de vos biens</h2>
+      <p class="body-text reveal d1">Trois expertises complémentaires pour couvrir tous vos besoins de mise en valeur immobilière.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc reveal">
+        <div class="svc-num">01</div>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="1.5"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+        </div>
+        <div class="h3">Photographie Immobilière</div>
+        <p>Reportages photo professionnels en haute définition — intérieurs, extérieurs et espaces communs. Maîtrise de la lumière et retouche complète incluse.</p>
+      </div>
+      <div class="svc reveal d1">
+        <div class="svc-num">02</div>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="23 7 16 12 23 17 23 7"/>
+            <rect x="1" y="5" width="15" height="14" rx="1.5"/>
+          </svg>
+        </div>
+        <div class="h3">Visite Vidéo Cinématique</div>
+        <p>Films immobiliers immersifs de 1 à 3 minutes — plans cinématiques, transitions fluides, musique d'ambiance. Conçus pour maximiser l'engagement en ligne.</p>
+      </div>
+      <div class="svc reveal d2">
+        <div class="svc-num">03</div>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="h3">Reels Instagram</div>
+        <p>Courtes vidéos percutantes optimisées pour Instagram et TikTok — montage dynamique, sous-titres et musique tendance pour booster votre visibilité organique.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROJETS ════════════════════════════════════════ -->
+<section id="portfolio">
+  <div class="container">
+    <div class="port-head">
+      <div>
+        <div class="eyebrow">Nos réalisations</div>
+        <h2 class="h2 reveal">Projets</h2>
+      </div>
+      <div class="port-toggle">
+        <button class="toggle-btn active" data-type="photo" aria-label="Photographie">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+          Photographie
+        </button>
+        <button class="toggle-btn" data-type="video" aria-label="Vidéo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="23 7 16 12 23 17 23 7"/>
+            <rect x="1" y="5" width="15" height="14" rx="2"/>
+          </svg>
+          Vidéo
+        </button>
+      </div>
+    </div>
+
+    <div class="port-grid" id="portGrid">
+
+      <!-- ── FOLDER 01 — Original 8 photos ── -->
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1qbYef0MKb2Uv-0Df0AgIPMB55w7Olur5&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=18ixfHR0NfjFtI0-t2OvJWAblPN5J1poT&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1Jn2QoQEUYiyFM6YEE1Oy6nbYdE8LMyoy&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1LkVpABc7FO6qnK5rYbNXlvJoJ1ERBxVD&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1JeOJnLZe921wkcYCFEgvuLdyhPVXqh-Y&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1crd4AvHETNHSmTxvDXClha5LHDbHjufX&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1MZxLSisTMFGSbQ9OSvFkgKLQbY0wMtcH&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1csq-svHzrKIZwW7gO0pnbcJzb8xYxW7N&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+
+      <!-- ── FOLDER 02 — 20 new photos ── -->
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1zfqf-HIcuyoxIBNxlLTyixBzfV_4c8FZ&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1AfG-2M5OFMcBhSROF6x-IsZ9DajSVTnO&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=17CweCzEqgFDQATzqURt8z15a1mmTq_-Q&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1JdAULYby1MRkrPI7XxBh80VgN9t7Abgs&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1-gSoMQSLm2xxCUCjxpmnmSsGClbMPrhd&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1MHRR5sSCvsY-rVgRu7nUXnBfVXowhjQL&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1b_ERNQnXM-r4YxGZF_Vu8ECKSBxmJUym&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1gtr5zIlhivWZ7xhjw5ORr0J8h2ELrqc3&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1arN-Jkio2sG3fvW0exfQKIDXCFUtTxCZ&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1VpiCIz-JZuQJaGXzc4j8VKW_4s0y4FXY&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1-GJRbsDU4Ga973B_PyZYa0_E6F6hV3F8&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1oXt0Kuku4Cpu75z6qi2xQ5D5wgPlK684&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1qsoojHL-vtma8rkEBoMT93JM-z9-bnbN&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1CNCeyRdcCVGs9LlFk7ysXb-8s0nyf4tI&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1pRVB3oO1ak0I70sHWnGbupT-E5AuG794&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1fbnTiSId_6jebAsm-XH2jD0-2KNkJcWg&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1RLtjpVWyECNLm8A1FSbiKWbcx9UxB7uR&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1qAj9uQOJnttBPyjr1KvuaZZ_vqCwUlRB&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=13zGYda-0C8gMraaFr7k1OUt6edBzQbmj&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1KPi2QXlZfD6RIDrUbrhzfdPgSMCYUTqj&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+
+      <!-- ── FOLDER 03 — 21 new photos ── -->
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1hOL3o1vf07VBRRJvr_sVE5pK-VOyYZpj&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1WSU4nORVlmx1sTT5gmxLZb5CEKTeyJGV&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1BWSMrLS3aCn5f2rKwsu2JH-UpAyViaZG&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=16VR_qVggzJv5n-Ws0sLFDXYhEjz3XIZC&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=17j629U57HZMg9V2t0637cEf36A2sh2Gs&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1uspo2qnHF3_8FTPlmQpoFaml1sm6htpT&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=12ntBjTDwwVOmNgbwTGmuPv_PsJRDifoh&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1uUTbFvrtvMBpA1t8izsCmxAAJSkS09va&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1y1HJCW9B9dgdDADQPlBHUtYCVWWRAK_f&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1Ms9isStL_uc2CAfn140IqCXlgMSzAMvN&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1SHnPjiT4cP0ux4IGIzn7pRMfHnJMIIZh&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1bpRd3uqBLPwMpO_Xz43FN4epJ9peQIOH&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1Hhinc0xMS5WD1jeHQWDOL0Nd3-HgOzxz&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=19IZ2woeymDxbyS_TCrFTRADGJPoVbI3W&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1in5avzyqjAqMGTSkV4DY3A97poxxRNhI&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=19FTDgCJQ3gTm8dt4EwiwW-O8eMyor7EP&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1gNOS0opYBVsI0JIbxUml-2infhWl5_vL&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1cy08urHvcHnZ5k52LZhGrBMAgYsOm-r0&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1XJdzdf9UKXtM_E4HhbZ1OZBZI3GeVnsS&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=1pJYvUQLi7ahi4lP6mRATDxkaRxBMb7N7&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item" data-type="photo" onclick="openLightbox(this)">
+        <img src="https://drive.google.com/thumbnail?id=10Nf-LAiZkUgQP9AwsZGgfEC6amksMf4p&sz=w900" alt="Kovision" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+
+      <!-- ── VIDEOS ── -->
+      <!-- Reels = 9:16 vertical → pass true as second arg -->
+      <div class="port-item hidden" data-type="video"
+           onclick="openModal('https://drive.google.com/file/d/1Vne_0lG0iTPHlS4NlVczskQeJ3YHRq_N/preview', true)">
+        <div class="play-badge">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <img src="https://drive.google.com/thumbnail?id=1Vne_0lG0iTPHlS4NlVczskQeJ3YHRq_N&sz=w900" alt="Reel 01" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item hidden" data-type="video"
+           onclick="openModal('https://drive.google.com/file/d/1WQUNlOZ0EFPKA-NXuJU7OeZejQR0MkrX/preview', true)">
+        <div class="play-badge">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <img src="https://drive.google.com/thumbnail?id=1WQUNlOZ0EFPKA-NXuJU7OeZejQR0MkrX&sz=w900" alt="Reel 02" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item hidden" data-type="video"
+           onclick="openModal('https://drive.google.com/file/d/1BQdJejjmAY1Ec005qitE2Cjhu5OmCsuQ/preview', true)">
+        <div class="play-badge">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <img src="https://drive.google.com/thumbnail?id=1BQdJejjmAY1Ec005qitE2Cjhu5OmCsuQ&sz=w900" alt="Reel 03" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item hidden" data-type="video"
+           onclick="openModal('https://drive.google.com/file/d/1PoQcKwpnkbnv3wHrqSLmzakw52ramRdp/preview', true)">
+        <div class="play-badge">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <img src="https://drive.google.com/thumbnail?id=1PoQcKwpnkbnv3wHrqSLmzakw52ramRdp&sz=w900" alt="Reel 04" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+      <div class="port-item hidden" data-type="video"
+           onclick="openModal('https://drive.google.com/file/d/1lmbZ-1HccwqdehfzLOLunBcrwQ6F7iwH/preview', true)">
+        <div class="play-badge">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <img src="https://drive.google.com/thumbnail?id=1lmbZ-1HccwqdehfzLOLunBcrwQ6F7iwH&sz=w900" alt="Vertical 01" loading="lazy" decoding="async">
+        <div class="port-overlay"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS ══════════════════════════════════════ -->
+<section id="process">
+  <div class="container">
+    <div class="process-head">
+      <div class="eyebrow">Comment ça marche</div>
+      <h2 class="h2 reveal">Notre processus en 4 étapes</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-n">01</div>
+        <div class="h3">Consultation</div>
+        <p>Échange pour comprendre votre bien, vos objectifs et le contenu souhaité.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-n">02</div>
+        <div class="h3">Repérage</div>
+        <p>Visite préalable pour planifier les angles, la lumière et le scénario.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-n">03</div>
+        <div class="h3">Tournage</div>
+        <p>Séance professionnelle avec équipement haut de gamme, attention aux détails.</p>
+      </div>
+      <div class="step reveal d3">
+        <div class="step-n">04</div>
+        <div class="h3">Livraison</div>
+        <p>Post-production soignée et livraison de vos fichiers en 48 à 72 heures.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══════════════════════════════════ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testi-head">
+      <div class="eyebrow">Ils nous font confiance</div>
+      <h2 class="h2 reveal">Ce que disent nos clients</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <span class="testi-mark">"</span>
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-text">
+          Kovision a complètement transformé la présentation de mes biens. Les photos sont d'une
+          qualité exceptionnelle et mes annonces se vendent 40% plus vite depuis que je travaille avec eux.
+        </p>
+        <div class="testi-who">
+          <img class="testi-av" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Karim B." loading="lazy" decoding="async">
+          <div>
+            <div class="testi-name">Karim Benali</div>
+            <div class="testi-role">Agent immobilier — Casablanca</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi reveal d1">
+        <span class="testi-mark">"</span>
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-text">
+          Le Reel Instagram réalisé pour notre résidence a généré plus de 80 000 vues organiques
+          en une semaine. La qualité cinématique est irréprochable. Je recommande sans hésitation.
+        </p>
+        <div class="testi-who">
+          <img class="testi-av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Sarah M." loading="lazy" decoding="async">
+          <div>
+            <div class="testi-name">Sarah Moussaoui</div>
+            <div class="testi-role">Promoteur immobilier — Marrakech</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi reveal d2">
+        <span class="testi-mark">"</span>
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-text">
+          Professionnalisme, rapidité et créativité — Kovision comprend vraiment l'immobilier
+          de luxe. Un niveau de production que je n'avais jamais vu. Partenariat reconduit chaque année.
+        </p>
+        <div class="testi-who">
+          <img class="testi-av" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Omar F." loading="lazy" decoding="async">
+          <div>
+            <div class="testi-name">Omar Fassi</div>
+            <div class="testi-role">Investisseur — Dubai &amp; Rabat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ═══════════════════════════════════════════ -->
+<section id="cta">
+  <div class="container" style="text-align:center;">
+    <div class="eyebrow" style="justify-content:center;">Passez à l'action</div>
+    <h2 class="h2 reveal" style="color:var(--white);margin:16px auto 18px;max-width:620px;">Votre bien mérite<br>une mise en scène <em style="font-style:italic;">exceptionnelle.</em></h2>
+    <p class="reveal d1" style="color:rgba(255,255,255,0.45);max-width:440px;margin:0 auto 42px;font-size:0.93rem;">Contactez-nous dès aujourd'hui et donnez à votre propriété la visibilité qu'elle mérite.</p>
+    <div class="cta-row reveal d2">
+      <a href="#contact" class="btn btn-gold">Demander un devis <span class="arr">&#8594;</span></a>
+      <a href="https://wa.me/212664015571" class="btn btn-outline">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ═══════════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal-l">
+        <div class="eyebrow">Nous contacter</div>
+        <h2 class="h2">Parlons de<br>votre projet</h2>
+        <p class="body-text" style="margin-top:20px;">
+          Que vous soyez agent immobilier, promoteur ou propriétaire, nous sommes là pour créer
+          le contenu visuel qui fera la différence. Réponse sous 24h garantie.
+        </p>
+        <div class="cinfo-list" style="margin-top:32px;">
+          <div class="cinfo">
+            <div class="cinfo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1.23h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="cinfo-lbl">Téléphone / WhatsApp</div>
+              <div class="cinfo-val">+212 664 015 571</div>
+            </div>
+          </div>
+          <div class="cinfo">
+            <div class="cinfo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="cinfo-lbl">Email</div>
+              <div class="cinfo-val">Kovision.ma@gmail.com</div>
+            </div>
+          </div>
+          <div class="cinfo">
+            <div class="cinfo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="cinfo-lbl">Zone d'intervention</div>
+              <div class="cinfo-val">Tout le Maroc</div>
+            </div>
+          </div>
+        </div>
+        <a href="https://wa.me/212664015571" class="wa-link">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.105.544 4.082 1.497 5.802L0 24l6.342-1.477A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.6-.475-5.123-1.307l-.366-.214-3.795.884.923-3.695-.235-.38A9.945 9.945 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+          </svg>
+          Écrire sur WhatsApp
+        </a>
+      </div>
+
+      <div class="reveal-r">
+        <form id="contactForm" onsubmit="handleForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Prénom *</label>
+              <input type="text" placeholder="Ahmed" required>
+            </div>
+            <div class="form-group">
+              <label>Nom *</label>
+              <input type="text" placeholder="Benali" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" placeholder="vous@exemple.com" required>
+          </div>
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input type="tel" placeholder="+212 6 XX XX XX XX">
+          </div>
+          <div class="form-group">
+            <label>Service souhaité *</label>
+            <select required>
+              <option value="">Choisir un service...</option>
+              <option>Photographie immobilière</option>
+              <option>Visite vidéo cinématique</option>
+              <option>Reels Instagram</option>
+              <option>Pack complet (photo + vidéo)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Décrivez votre projet, le type de bien, la ville..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-gold form-submit">
+            Envoyer <span class="arr">&#8594;</span>
+          </button>
+        </form>
+        <div id="formOk">
+          <div class="ok-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h4>Message envoyé</h4>
+          <p>Nous vous répondrons dans les 24 heures.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="#hero">
+          <span class="footer-logo-mark">Kovision</span>
+        </a>
+        <p class="footer-tagline">
+          Studio de photographie et vidéographie spécialisé dans l'immobilier
+          de prestige. Maroc et Dubai.
+        </p>
+      </div>
+      <div class="footer-social-col">
+        <h5>Retrouvez-nous</h5>
+        <div class="footer-social-links">
+          <a href="https://www.instagram.com/kovision.co/" target="_blank" class="footer-social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-linecap="round"/>
+            </svg>
+            @kovision.co
+          </a>
+          <a href="https://wa.me/212664015571" target="_blank" class="footer-social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.105.544 4.082 1.497 5.802L0 24l6.342-1.477A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.6-.475-5.123-1.307l-.366-.214-3.795.884.923-3.695-.235-.38A9.945 9.945 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+            +212 664 015 571
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Kovision. Tous droits réservés.</p>
+      <p>Kovision.ma@gmail.com</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/212664015571" class="float-wa" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.105.544 4.082 1.497 5.802L0 24l6.342-1.477A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.6-.475-5.123-1.307l-.366-.214-3.795.884.923-3.695-.235-.38A9.945 9.945 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<!-- Video modal — FIX: added allow="autoplay; encrypted-media; fullscreen" -->
+<div class="modal" id="vidModal">
+  <button class="modal-close" onclick="closeModal()">&#215;</button>
+  <div class="modal-box">
+    <iframe
+      id="vidFrame"
+      src=""
+      allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose">&#215;</button>
+  <button class="lightbox-prev" id="lbPrev">&#8592;</button>
+  <img class="lightbox-img" id="lbImg" src="" alt="">
+  <button class="lightbox-next" id="lbNext">&#8594;</button>
+  <div class="lightbox-counter" id="lbCounter"></div>
+</div>
+
+<!-- ══ SCRIPTS ═══════════════════════════════════════ -->
+<script>
+// ── Nav on scroll ──────────────────────────────────
+const nav    = document.getElementById('nav');
+const navCta = document.getElementById('navCta');
+window.addEventListener('scroll', () => {
+  const s = window.scrollY > 60;
+  nav.classList.toggle('scrolled', s);
+  navCta.style.display = s ? 'inline-flex' : 'none';
+}, { passive: true });
+
+// ── Hero image animation ───────────────────────────
+window.addEventListener('load', () => {
+  document.getElementById('heroBg').classList.add('loaded');
+});
+
+// ── Hamburger ──────────────────────────────────────
+const hambBtn = document.getElementById('hambBtn');
+const mobMenu = document.getElementById('mobMenu');
+hambBtn.addEventListener('click', () => {
+  hambBtn.classList.toggle('open');
+  mobMenu.classList.toggle('open');
+  document.body.style.overflow = mobMenu.classList.contains('open') ? 'hidden' : '';
+});
+document.querySelectorAll('.mob-l').forEach(l => l.addEventListener('click', () => {
+  hambBtn.classList.remove('open');
+  mobMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+// ── Reveal on scroll ───────────────────────────────
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => io.observe(el));
+
+// ── Counters ───────────────────────────────────────
+const cio = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, to = +el.dataset.to;
+    let cur = 0;
+    const duration = 1200; // ms
+    const startTime = performance.now();
+    function tick(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = progress < 1 ? Math.floor(eased * to) : to;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    cio.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.cnt').forEach(c => cio.observe(c));
+
+// ── Portfolio toggle ───────────────────────────────
+const toggleBtns = document.querySelectorAll('.toggle-btn');
+const portItems  = document.querySelectorAll('.port-item');
+toggleBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    toggleBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const type = btn.dataset.type;
+    portItems.forEach(item => {
+      item.classList.toggle('hidden', item.dataset.type !== type);
+    });
+  });
+});
+
+// ── Video modal — autoplay + vertical support ──────
+function openModal(url, isVertical) {
+  const modal = document.getElementById('vidModal');
+  const box   = modal.querySelector('.modal-box');
+  box.classList.toggle('vertical', !!isVertical);
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // Create a fresh iframe on every open — preserves user-gesture context
+  // for autoplay in all browsers (setting .src on an existing idle iframe
+  // can lose the gesture token in Chrome/Safari/Firefox)
+  const old = document.getElementById('vidFrame');
+  const frame = document.createElement('iframe');
+  frame.id = 'vidFrame';
+  frame.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture';
+  frame.allowFullscreen = true;
+  frame.referrerPolicy = 'no-referrer-when-downgrade';
+  frame.style.cssText = 'width:100%;height:100%;border:none;display:block;';
+  frame.src = url + (url.includes('?') ? '&' : '?') + 'autoplay=1';
+  box.replaceChild(frame, old);
+}
+
+function closeModal() {
+  const frame = document.getElementById('vidFrame');
+  if (frame) frame.src = '';
+  document.getElementById('vidModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('vidModal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+
+// ── Lightbox ───────────────────────────────────────
+const lb        = document.getElementById('lightbox');
+const lbImg     = document.getElementById('lbImg');
+const lbCounter = document.getElementById('lbCounter');
+let lbItems = [], lbIndex = 0;
+
+function buildPhotoList() {
+  lbItems = [...document.querySelectorAll('.port-item[data-type="photo"] img')];
+}
+
+function openLightbox(item) {
+  buildPhotoList();
+  const img = item.querySelector('img');
+  lbIndex = lbItems.indexOf(img);
+  showLbImage();
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function showLbImage() {
+  // Use w1200 for lightbox (good balance of quality and speed)
+  const src = lbItems[lbIndex].src.replace(/sz=w\d+/, 'sz=w1200');
+  lbImg.src = src;
+  lbCounter.textContent = (lbIndex + 1) + ' / ' + lbItems.length;
+}
+
+function lbGo(dir) {
+  lbIndex = (lbIndex + dir + lbItems.length) % lbItems.length;
+  showLbImage();
+}
+
+function closeLightbox() {
+  lb.classList.remove('open');
+  lbImg.src = '';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+document.getElementById('lbPrev').addEventListener('click', () => lbGo(-1));
+document.getElementById('lbNext').addEventListener('click', () => lbGo(1));
+lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+document.addEventListener('keydown', e => {
+  if (lb.classList.contains('open')) {
+    if (e.key === 'Escape')      closeLightbox();
+    if (e.key === 'ArrowLeft')   lbGo(-1);
+    if (e.key === 'ArrowRight')  lbGo(1);
+  }
+  if (document.getElementById('vidModal').classList.contains('open')) {
+    if (e.key === 'Escape') closeModal();
+  }
+});
+
+// Touch swipe for lightbox
+let lbTouchX = null;
+lb.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener('touchend', e => {
+  if (lbTouchX === null) return;
+  const dx = e.changedTouches[0].clientX - lbTouchX;
+  if (Math.abs(dx) > 50) lbGo(dx > 0 ? -1 : 1);
+  lbTouchX = null;
+}, { passive: true });
+
+// ── Contact form ───────────────────────────────────
+function handleForm(e) {
+  e.preventDefault();
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formOk').style.display = 'block';
+}
+
+// ── Active nav highlight ───────────────────────────
+const sects = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sects.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+  navAs.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--white)' : '';
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
